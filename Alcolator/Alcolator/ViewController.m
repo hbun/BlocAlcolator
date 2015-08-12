@@ -17,12 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (IBAction)textFieldDidChange:(UITextField *)sender {
     NSString *enteredText = sender.text;
@@ -35,6 +37,14 @@
 
 - (IBAction)sliderValueDidChange:(UISlider *)sender {
     NSLog(@"Slider value changed to %f", sender.value);
+    NSString *wineText;
+    if (sender.value < 2) {
+        wineText = NSLocalizedString(@"glass", @"singular of glass");
+    } else {
+        wineText = NSLocalizedString(@"glasses", @"plural of glass");
+    }
+    int glasses = sender.value;
+    self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"Wine (%ld %@)", nil), glasses, wineText];
     [self.beerPercentTextField resignFirstResponder];
 }
 
